@@ -1,0 +1,64 @@
+import logo from '../public/logo.png'
+import Image from 'next/image'
+import {Blocks,Folder,Award,User} from 'lucide-react'
+import { sidebarProps } from '@/Types/types'
+import SideComponent from './SideComponent'
+
+const sidelinks:sidebarProps[] = [
+  {
+    name: 'Dashboard',
+    icon: <Blocks size={20} />,
+    href: '/dashboard'
+  },
+  {   name: 'Projects',   
+    icon: <Folder size={20} />,
+    href: '/projects'
+  },
+  {
+    name: 'Skills',
+    icon: <Award size={20} />,
+    href: '/skills'
+  },
+  {
+    name: 'Profile',
+    icon: <User size={20} />,
+    href: '/profile'
+  }
+]
+
+const Sidebar = () => {
+  return (
+    <div className='w-[25%] bg-slate-900 h-full border-slate-800 border-r flex flex-col justify-between text-off-white-1'>
+      <div >
+        <div className='border-slate-800 border-b py-5 px-10  text-2xl flex  items-center gap-2 '>
+            <Image src={logo} alt="logo" width={50} height={50} className='inline-block mr-2 rounded-2xl' />
+            <h1>DevSpace</h1>
+        </div>
+        <div className='py-5 px-10'>
+          <ul className='flex flex-col gap-3'>
+            {sidelinks.map((link,index) => (
+              <li key={index} >
+                <SideComponent href={link.href} name={link.name} icon={link.icon} />
+              </li>
+            ))}
+          </ul>
+        </div>
+
+
+      </div>
+
+      {/* profile tag */}
+      <div className='border-slate-800 border-t  p-10  flex items-center gap-2'>
+            <div className='rounded-full w-14 h-14 bg-[#fff1] flex justify-center items-center border border-primary/20 mr-2'>
+              <User size={26} className='text-primary'/>
+            </div>
+            <div className='flex flex-col gap-1'>
+              <p >Johnathan Holmes</p>
+              <p className='text-xs text-slate-400'>John@devSpace.co.uk</p>
+            </div>
+      </div>
+    </div>
+  )
+}
+
+export default Sidebar
