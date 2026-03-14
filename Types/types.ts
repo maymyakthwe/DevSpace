@@ -15,7 +15,7 @@ export type statsType = {
 }
 
 export type projectType = {
-    id: number;
+    _id: string;
     name: string;  
     description: string;
     status: string;
@@ -25,3 +25,18 @@ export type projectType = {
     link: string;
     active: boolean;
 }
+
+export type userRegister = {
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    confirmPassword: string
+    
+}
+
+export type AuthResponse = {
+  accessToken: string;        // JWT token
+  tokenType: "Bearer";
+  user: userRegister;                 // user data
+};

@@ -1,69 +1,27 @@
 "use client"
 import Project from '@/components/Project'
+import { getProjects } from '@/lib/project-route'
 import { projectType } from '@/Types/types'
 import {motion} from 'framer-motion'
 import { Plus,Search,ListFilter } from 'lucide-react'
-
-export const projects: projectType[] = [
-  {
-    id: 1,
-    name: "DevSpace Dashboard",
-    description: "A modern developer dashboard built with Next.js and Tailwind CSS.",
-    status: "In Progress",
-    techstack: ["Next.js", "TypeScript", "Tailwind CSS"],
-    lastUpdated: "2026/03/01",
-    progress: 75,
-    link: "https://github.com/yourusername/devspace-dashboard",
-    active: true,
-  },
-  {
-    id: 2,
-    name: "MERN Animal Shelter",
-    description: "Full-stack animal adoption platform with admin dashboard.",
-    status: "Completed",
-    techstack: ["MongoDB", "Express.js", "React", "Node.js"],
-    lastUpdated: "2026/02/20",
-    progress: 100,
-    link: "https://github.com/yourusername/animal-shelter",
-    active: false,
-  },
-  {
-    id: 3,
-    name: "Portfolio v3",
-    description: "Personal portfolio with Framer Motion animations and 3D elements.",
-    status: "In Progress",
-    techstack: ["Next.js", "Framer Motion", "Three.js"],
-    lastUpdated: "2026/02/28",
-    progress: 60,
-    link: "https://yourportfolio.com",
-    active: true,
-  },
-  {
-    id: 4,
-    name: "E-commerce Admin Panel",
-    description: "Admin panel with analytics, product management and role-based access.",
-    status: "Planning",
-    techstack: ["React", "Redux", "Node.js", "MySQL"],
-    lastUpdated: "2026/03/03",
-    progress: 20,
-    link: "https://github.com/yourusername/ecommerce-admin",
-    active: true,
-  },
-  {
-    id: 5,
-    name: "TaskFlow API",
-    description: "RESTful API for task management with JWT authentication.",
-    status: "Completed",
-    techstack: ["Express.js", "TypeScript", "PostgreSQL"],
-    lastUpdated: "2026/01/15",
-    progress: 100,
-    link: "https://github.com/yourusername/taskflow-api",
-    active: false,
-  },
-]
+import { useEffect, useState } from 'react'
 
 
-const page = () => {
+
+const Page =  () => {
+
+  const [projects,setProjects]= useState<projectType[]>([])
+
+  useEffect(()=>{
+    const fetchProjects = async()=>{
+      const data = await getProjects()
+      setProjects(data)
+    }
+    fetchProjects()
+  },[])
+
+  console.log(projects)
+
   return (
     <div className=" p-10 text-off-white-1  min-h-full ">
       {/* header */}
@@ -123,4 +81,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

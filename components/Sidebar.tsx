@@ -6,29 +6,29 @@ import SideComponent from './SideComponent'
 
 const sidelinks:sidebarProps[] = [
   {
-    name: 'Dashboard',
+    name: 'Home',
     icon: <Blocks size={20} />,
-    href: '/dashboard'
+    href: '/dashboard/home'
   },
   {   name: 'Projects',   
     icon: <Folder size={20} />,
-    href: '/projects'
+    href: '/dashboard/projects'
   },
   {
     name: 'Skills',
     icon: <Award size={20} />,
-    href: '/skills'
+    href: '/dashboard/skills'
   },
   {
     name: 'Profile',
     icon: <User size={20} />,
-    href: '/profile'
+    href: '/dashboard/profile'
   }
 ]
 
 const Sidebar = () => {
   return (
-    <div className='w-[25%] bg-slate-900 h-full border-slate-800 border-r flex flex-col justify-between text-off-white-1'>
+    <div className='w-[25%] bg-background-2 h-full border-slate-800 border-r flex flex-col justify-between text-off-white-1'>
       <div >
         <div className='border-slate-800 border-b py-5 px-10  text-2xl flex  items-center gap-2 '>
             <Image src={logo} alt="logo" width={50} height={50} className='inline-block mr-2 rounded-2xl' />
