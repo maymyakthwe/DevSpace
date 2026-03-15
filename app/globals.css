@@ -46,3 +46,13 @@ body {
   scrollbar-width: none;
   /* Firefox */
 }
+
+/* hide scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

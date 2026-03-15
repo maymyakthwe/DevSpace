@@ -6,9 +6,9 @@ import SideComponent from './SideComponent'
 
 const sidelinks:sidebarProps[] = [
   {
-    name: 'Home',
+    name: 'Overview',
     icon: <Blocks size={20} />,
-    href: '/dashboard/home'
+    href: '/dashboard/overview'
   },
   {   name: 'Projects',   
     icon: <Folder size={20} />,
