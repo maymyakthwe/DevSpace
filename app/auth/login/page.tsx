@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Mail,LockKeyhole } from 'lucide-react'
 import { loginUser, setToken } from '@/lib/auth-route'
 import { useRouter } from "next/navigation"
+import Link from 'next/link'
 
 const Page = () => {
 const router = useRouter()
@@ -27,7 +28,7 @@ const router = useRouter()
       const result = await loginUser(data)
       setToken(result.access_token)
       console.log("Login successful:", result)
-      router.push("/dashboard/home")
+      router.push("/dashboard/overview")
     }  catch(error){
       console.error("Login failed:", error)
       console.log("Login failed:", error instanceof Error ? error.message : error)
@@ -100,7 +101,7 @@ const router = useRouter()
                   Github
               </div>
             </div>
-            <div className='text-center my-5 text-sm text-off-white-2/70'>Don&apos;t have an account? <span className='text-primary/90 hover:text-primary/70 transition duration-100 cursor-pointer'>Sign up</span></div>
+            <div className='text-center my-5 text-sm text-off-white-2/70'>Don&apos;t have an account? <span className='text-primary/90 hover:text-primary/70 transition duration-100 cursor-pointer'><Link href={"/auth/register"}>Sign up</Link></span></div>
           </div> 
 
         </div>

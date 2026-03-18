@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import {ArrowRight, CircleCheck, Sparkles,CodeXml, Award, CircleStar, TrendingUp, Users, Zap} from 'lucide-react'
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -22,7 +23,7 @@ export default function Home() {
 
         <div className='flex text-xl gap-5 justify-center items-center mt-10'>
           <div className='px-8 py-4 bg-primary hover:bg-primary/80 flex text-white items-center gap-1 rounded-xl duration-300  ml-4'>
-                <p>Start Free</p>
+                <Link href="/auth/register">Start Free</Link >
                 <ArrowRight size={18}  />
             </div>
             <div className='px-8 py-4 hover:bg-card bg-card/60 border border-slate-600/40 rounded-xl  duration-300 text-off-white-2  hover:text-white'>Watch Demo</div>

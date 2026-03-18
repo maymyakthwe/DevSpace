@@ -3,6 +3,7 @@ import React,{useState} from 'react'
 import { Mail,LockKeyhole,UserPen } from 'lucide-react'
 import { userRegister } from '@/Types/types'
 import { registerUser } from '@/lib/auth-route'
+import Link from 'next/link'
 
 
 
@@ -23,7 +24,7 @@ const Page = () => {
     })
   }
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault() 
     if(data.password !== data.confirmPassword){
       alert("Passwords do not match!")
@@ -153,7 +154,7 @@ const Page = () => {
                   Github
               </div>
             </div>
-            <div className='text-center my-5 text-sm text-off-white-2/70'>Already have an account? <span className='text-primary/90 hover:text-primary/70 transition duration-100 cursor-pointer'>Sign in</span></div>
+            <div className='text-center my-5 text-sm text-off-white-2/70'>Already have an account? <span className='text-primary/90 hover:text-primary/70 transition duration-100 cursor-pointer'><Link href={"/auth/login"}>Sign in</Link></span></div>
           </div>
           
 

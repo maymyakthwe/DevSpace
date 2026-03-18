@@ -1,12 +1,14 @@
 import { projectType } from '@/Types/types';
-import{Calendar,ExternalLink} from 'lucide-react'
+import{Calendar,ExternalLink,Pencil,Trash2} from 'lucide-react'
 import React from 'react'
 
 type Props = {
     project: projectType;
+    onEdit: (project: projectType) => void;
+    onDelete: (id: string) => void;
 }
 
-const Project = ({project}: Props) => {
+const Project = ({project, onEdit, onDelete}: Props) => {
   return (
     <div className="group bg-card border border-slate-700/50 rounded-2xl p-6 hover:border-primary transition duration-300 cursor-pointer min-h-90 flex flex-col justify-between">
       {/* heading & description */}
@@ -33,9 +35,27 @@ const Project = ({project}: Props) => {
             <Calendar size={20} className='mr-2'/>
             <div>{project.lastUpdated}</div>
           </div>
-          <a href={project.link} target="_blank" className="text-sm text-primary hover:underline">
-            <ExternalLink size={20}/>
-          </a>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => onEdit(project)}
+              className="text-off-white-2 hover:text-primary transition"
+            >
+              <Pencil size={18}/>
+            </button>
+            {project._id && (
+              <button
+                type="button"
+                onClick={() => onDelete(project._id!)}
+                className="text-off-white-2 hover:text-red-400 transition"
+              >
+                <Trash2 size={18}/>
+              </button>
+            )}
+            <a href={project.link} target="_blank" rel="noreferrer" className="text-sm text-primary hover:underline">
+              <ExternalLink size={20}/>
+            </a>
+          </div>
           </div>
       </div>
      

@@ -15,16 +15,16 @@ export type statsType = {
 }
 
 export type projectType = {
-    _id: string;
+    _id?: string;
     name: string;  
     description: string;
-    status: string;
     techstack: string[];
     lastUpdated: string;
-    progress: number;
     link: string;
     active: boolean;
 }
+
+
 
 export type userRegister = {
     firstName: string,
@@ -35,8 +35,28 @@ export type userRegister = {
     
 }
 
-export type AuthResponse = {
-  accessToken: string;        // JWT token
-  tokenType: "Bearer";
-  user: userRegister;                 // user data
-};
+// export type AuthResponse = {
+//   accessToken: string;        
+//   tokenType: "Bearer";
+//   user: userRegister;                 
+// };
+
+
+export type profileType={
+  _id?: string,
+  username: string,
+  bio: string,
+  location: string,
+  email:string,
+  portfolio: string,
+  github: string,
+  linkedin:string ,
+  twitter: string,
+  devSpace: string,
+  about: string,
+  top_skills: [],
+  achievement: [],
+  public: boolean,
+  showEmail: boolean,
+  userId:string
+}
