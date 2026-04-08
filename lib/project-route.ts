@@ -2,8 +2,19 @@ import { projectType } from "@/Types/types"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
-export async function getProjects() {
-  const res=await fetch(`${API_URL}/projects`,{cache:'no-store'})
+export async function getProjects(token:string|null) {
+  if (!token) {
+        throw new Error("No authentication token available")
+    }
+    console.log("Fetching projects with token:", token) // Debugging log
+  const res=await fetch(`${API_URL}/projects`,
+    {
+      method:"GET",
+      cache:'no-store',
+      headers:{
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${token}`,
+  }})
   if(!res.ok){
     throw new Error("Failed to fetch projects")
   }
@@ -11,7 +22,11 @@ export async function getProjects() {
 }
 
 
-export const createProject = async (data: projectType) => {
+export const createProject = async (data: projectType,token:string|null) => {
+  if (!token) {
+        throw new Error("No authentication token available")
+    }
+  console.log("Fetching projects with token:", token) // Debugging log
   const now = new Date();
 
   const formattedDate = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
@@ -25,6 +40,7 @@ export const createProject = async (data: projectType) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
     },
     body: JSON.stringify(data)
   })
@@ -38,7 +54,10 @@ export const createProject = async (data: projectType) => {
   return result
 }
 
-export const updateProject = async (id: string, data: projectType) => {
+export const updateProject = async (id: string, data: projectType,token:string|null) => {
+  if (!token) {
+        throw new Error("No authentication token available")
+    }
   const now = new Date()
   const formattedDate = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`
 
@@ -51,6 +70,7 @@ export const updateProject = async (id: string, data: projectType) => {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
     },
     body: JSON.stringify(payload)
   })
@@ -67,9 +87,15 @@ export const updateProject = async (id: string, data: projectType) => {
   }
 }
 
-export const deleteProject = async (id: string) => {
+export const deleteProject = async (id: string,token:string|null) => {
+  if (!token) {
+        throw new Error("No authentication token available")
+    }
   const res = await fetch(`${API_URL}/projects/${id}`, {
     method: "DELETE",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    }
   })
 
   const result = await res.json()

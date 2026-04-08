@@ -1,26 +1,28 @@
 "use client"
-import { MapPin, Link as LinkIcon, Mail, Github, Linkedin, Twitter, Copy, ExternalLink } from "lucide-react";
+import { MapPin, Link as LinkIcon, Mail, Github, Linkedin, Twitter, Copy, ExternalLink, Badge } from "lucide-react";
 import {motion} from "framer-motion"
 import { profileType } from "@/Types/types";
 import { useEffect, useState } from "react";
 import { getUserProfile } from "@/lib/profile-route";
+import { useToken } from "@/lib/auth-route";
 
 
 
 export const initialProfile: profileType = {
   _id: "",
-  username: "",
-  bio: "",
-  location: "",
-  email: "",
-  portfolio: "",
-  github: "",
-  linkedin: "",
-  twitter: "",
-  devSpace: "",
-  about: "",
-  top_skills: [],
-  achievement: [],
+  fullname: "Example Developer",
+  username: "Example123",
+  bio: "This is a sample bio for the developer profile. Passionate about coding and open source.",
+  location: "Example city, Country",
+  email: "Toji@example.com",
+  portfolio: "https://example.com",
+  github: "https://github.com/example",
+  linkedin: "https://linkedin.com/in/example",
+  twitter: "https://twitter.com/example",
+  devSpace: "https://devspace.com/example",
+  about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  top_skills: ["JavaScript", "React", "Node.js", "Python", "Django"],
+  achievement: ["Full-stack web application", "Spoke at a tech conference"],
   public: true,
   showEmail: false,
   userId: "",
@@ -33,16 +35,18 @@ const achievements = [
 ];
 
 export default function Profile() {
-  const profileUrl = "devboard.io/alex-morgan";
   const [profileData,setProfileData]=useState<profileType>(initialProfile)
+  const token = useToken()
 
   useEffect(()=>{
     const fetchProfile = async()=>{
-      const data =  await getUserProfile()
+      const data =  await getUserProfile(token)
       setProfileData(data)
     }
-    fetchProfile()
-  },[])
+    if (token) {
+      fetchProfile()
+    }
+  },[token])
 
   return (
     <div className="p-12 max-w-360 mx-auto">
@@ -78,8 +82,9 @@ export default function Profile() {
                 <div className="size-28 rounded-full bg-primary/10 flex items-center justify-center mb-5">
                   <span className="text-4xl">👨‍💻</span>
                 </div>
-                <h2 className="text-2xl font-semibold mb-2 tracking-tight">{profileData.username}</h2>
-                <p className="text-sm text-muted-foreground mb-6">{profileData.bio}</p>
+                <h2 className="text-2xl font-semibold mb-2 tracking-tight">{profileData.fullname}</h2>
+                <h2 className="text-sm mb-2 tracking-tight">&#40; {profileData.username} &#41;</h2>
+                <p className="text-sm text-[#fff7] mb-6">{profileData.bio}</p>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
                   <MapPin className="size-4" />
                   <span>{profileData.location}</span>
@@ -178,20 +183,20 @@ export default function Profile() {
             transition={{ delay: 0.2 }}
           >
             <div className="p-8 bg-card text-card-foreground flex flex-col gap-6 rounded-xl border border-slate-600/40">
-              <h3 className="font-semibold text-lg mb-4 tracking-tight">{profileData.devSpace}</h3>
+              <h3 className="font-semibold text-lg mb-4 tracking-tight">Public Profile URL</h3>
               <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
                 Share your developer profile with recruiters, colleagues, or on social media.
               </p>
               <div className="flex items-center gap-3">
                 <div className="flex-1 flex items-center gap-3 px-5 py-4 rounded-xl bg-accent border border-border">
                   <LinkIcon className="size-5 text-muted-foreground" />
-                  <span className="text-sm font-medium">{profileUrl}</span>
+                  <span className="text-sm font-medium">{profileData.devSpace}</span>
                 </div>
-                <button  className="border-border h-[56px] px-5 hover:border-primary/50 transition-colors">
+                <button  className="border-border h-14 px-5 hover:border-primary/50 transition-colors">
                   <Copy className="size-4 mr-2" />
                   Copy
                 </button>
-                <button  className="border-border h-[56px] px-5 hover:border-primary/50 transition-colors">
+                <button  className="border-border h-14 px-5 hover:border-primary/50 transition-colors">
                   <ExternalLink className="size-4 mr-2" />
                   View
                 </button>
@@ -222,15 +227,10 @@ export default function Profile() {
             <div className="p-8 bg-card text-card-foreground flex flex-col gap-6 rounded-xl border border-slate-600/40">
               <h3 className="font-semibold text-lg mb-5 tracking-tight">Top Skills</h3>
               <div className="flex flex-wrap gap-3">
-                {/* {topSkills.map((skill, index) => (
-                  <Badge
-                    key={index}
-                    variant="secondary"
-                    className="px-4 py-2 bg-accent text-foreground hover:bg-primary/10 hover:text-primary transition-colors font-medium text-sm cursor-pointer"
-                  >
-                    {skill}
-                  </Badge>
-                ))} */}
+                {profileData.top_skills.map((skill, index) => (
+                  
+                    <div key={index}>{skill}</div>
+                ))}
               </div>
             </div>
           </motion.div>
@@ -255,7 +255,7 @@ export default function Profile() {
               <div className="space-y-5">
                 {achievements.map((achievement, index) => (
                   <div key={index} className="flex items-start gap-5">
-                    <div className="p-3 rounded-xl bg-primary/10 flex-shrink-0">
+                    <div className="p-3 rounded-xl bg-primary/10 shrink-0">
                       <span className="text-xl">🏆</span>
                     </div>
                     <div className="flex-1">

@@ -19,31 +19,39 @@ export type projectType = {
     name: string;  
     description: string;
     techstack: string[];
-    lastUpdated: string;
+    collaborators: string[];
+    commits: number;
+    category: string;
+    type:string;
+    githubLink:string;
+    highlights: string[];
+    isfeatured: boolean;
+    tags: string[];
     link: string;
     active: boolean;
+    startDate:string;
+    endDate:string;
+    status:string;
 }
+
 
 
 
 export type userRegister = {
     firstName: string,
     lastName: string,
+    username: string,
     email: string,
     password: string,
     confirmPassword: string
     
 }
 
-// export type AuthResponse = {
-//   accessToken: string;        
-//   tokenType: "Bearer";
-//   user: userRegister;                 
-// };
 
 
 export type profileType={
   _id?: string,
+  fullname: string,
   username: string,
   bio: string,
   location: string,
@@ -54,9 +62,23 @@ export type profileType={
   twitter: string,
   devSpace: string,
   about: string,
-  top_skills: [],
-  achievement: [],
+  top_skills: string[],
+  achievement: string[],
   public: boolean,
   showEmail: boolean,
   userId:string
+}
+
+
+export type skillType={
+    _id?:string,
+    name:string,
+    catergory:string,
+    category: string
+    proficiency: string
+    yearsOfExperience: number
+    projectRefs: string[]  
+    isTopSkill: boolean
+    icon: string
+    userId?: string
 }

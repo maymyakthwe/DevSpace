@@ -3,6 +3,9 @@ import Image from 'next/image'
 import {Blocks,Folder,Award,User} from 'lucide-react'
 import { sidebarProps } from '@/Types/types'
 import SideComponent from './SideComponent'
+import Menu from './Menu'
+import { logout } from '@/lib/auth-route'
+import Link from 'next/link'
 
 const sidelinks:sidebarProps[] = [
   {
@@ -26,14 +29,15 @@ const sidelinks:sidebarProps[] = [
   }
 ]
 
+
 const Sidebar = () => {
   return (
-    <div className='w-[25%] bg-background-2 h-full border-slate-800 border-r flex flex-col justify-between text-off-white-1'>
+    <div className='w-[25%] bg-card h-full border-slate-800 border-r flex flex-col justify-between text-off-white-1'>
       <div >
-        <div className='border-slate-800 border-b py-5 px-10  text-2xl flex  items-center gap-2 '>
+        <Link href="/" className='border-slate-800 border-b py-5 px-10  text-2xl flex  items-center gap-2 '>
             <Image src={logo} alt="logo" width={50} height={50} className='inline-block mr-2 rounded-2xl' />
             <h1>DevSpace</h1>
-        </div>
+        </Link>
         <div className='py-5 px-10'>
           <ul className='flex flex-col gap-3'>
             {sidelinks.map((link,index) => (
@@ -48,14 +52,17 @@ const Sidebar = () => {
       </div>
 
       {/* profile tag */}
-      <div className='border-slate-800 border-t  p-10  flex items-center gap-2'>
-            <div className='rounded-full w-14 h-14 bg-[#fff1] flex justify-center items-center border border-primary/20 mr-2'>
+      <div className='border-slate-800 border-t  p-8 items-center  flex justify-between'>
+        <div className='flex items-center  gap-2'>
+            <div className='rounded-full w-14 h-14 bg-card flex justify-center items-center border border-primary/20 mr-2 '>
               <User size={26} className='text-primary'/>
             </div>
             <div className='flex flex-col gap-1'>
               <p >Johnathan Holmes</p>
               <p className='text-xs text-slate-400'>John@devSpace.co.uk</p>
             </div>
+          </div>
+         <Menu />
       </div>
     </div>
   )

@@ -48,17 +48,17 @@ export default function Home() {
     {/* Numbers Section */}
       <div className="border-y border-slate-600/40 bg-card/60  mt-20 p-5 w-full flex justify-center items-center h-48">
         <div className="grow flex-col flex items-center justify-center  ">
-          <span className="text-transparent bg-gradient-to-r from-primary to-[#c07aff] bg-clip-text text-3xl">10,000+</span> 
+          <span className="text-transparent bg-linear-to-r from-primary to-[#c07aff] bg-clip-text text-3xl">10,000+</span> 
           <span className="text-off-white-2">Active Developers</span>
         </div>
         <div className="grow flex-col flex items-center justify-center">
-          <span className="text-transparent bg-gradient-to-r from-primary to-[#c07aff] bg-clip-text text-3xl">50,000+</span> 
+          <span className="text-transparent bg-linear-to-r from-primary to-[#c07aff] bg-clip-text text-3xl">50,000+</span> 
           <span className="text-off-white-2">Projects Tracked</span>
         </div><div className="grow flex-col flex items-center justify-center">
-          <span className="text-transparent bg-gradient-to-r from-primary to-[#c07aff] bg-clip-text text-3xl">100,000+</span> 
+          <span className="text-transparent bg-linear-to-r from-primary to-[#c07aff] bg-clip-text text-3xl">100,000+</span> 
           <span className="text-off-white-2">Skills Mastered</span>
         </div><div className="grow flex-col flex items-center justify-center">
-          <span className="text-transparent bg-gradient-to-r from-primary to-[#c07aff] bg-clip-text text-3xl">25,000+</span> 
+          <span className="text-transparent bg-linear-to-r from-primary to-[#c07aff] bg-clip-text text-3xl">25,000+</span> 
           <span className="text-off-white-2">Goals Achieved</span>
         </div>
 

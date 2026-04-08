@@ -1,9 +1,9 @@
-import { getToken } from "./auth-route"
-
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
-export async function getUserProfile(){
-    const token = getToken();
+export async function getUserProfile(token: string | null){
+    if (!token) {
+        throw new Error("No authentication token available")
+    }
     const res=await fetch(`${API_URL}/profile/`,{method:"GET",cache:'no-store',headers:{
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`,
