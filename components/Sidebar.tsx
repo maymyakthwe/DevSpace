@@ -1,11 +1,12 @@
+
 import logo from '../public/logo.png'
 import Image from 'next/image'
-import {Blocks,Folder,Award,User} from 'lucide-react'
+import {Blocks,Folder,CodeXml,User,Award} from 'lucide-react'
 import { sidebarProps } from '@/Types/types'
 import SideComponent from './SideComponent'
 import Menu from './Menu'
-import { logout } from '@/lib/auth-route'
 import Link from 'next/link'
+import SideProfile from './sideProfile'
 
 const sidelinks:sidebarProps[] = [
   {
@@ -19,8 +20,13 @@ const sidelinks:sidebarProps[] = [
   },
   {
     name: 'Skills',
-    icon: <Award size={20} />,
+    icon: <CodeXml size={20} />,
     href: '/dashboard/skills'
+  },
+  {
+    name: 'Achievements',
+    icon: <Award size={20} />,
+    href: '/dashboard/achievements'
   },
   {
     name: 'Profile',
@@ -31,6 +37,8 @@ const sidelinks:sidebarProps[] = [
 
 
 const Sidebar = () => {
+
+
   return (
     <div className='w-[25%] bg-card h-full border-slate-800 border-r flex flex-col justify-between text-off-white-1'>
       <div >
@@ -52,18 +60,15 @@ const Sidebar = () => {
       </div>
 
       {/* profile tag */}
-      <div className='border-slate-800 border-t  p-8 items-center  flex justify-between'>
+      <Link href={"/dashboard/profile"} className='border-slate-800 border-t  p-8 items-center  flex justify-between'>
         <div className='flex items-center  gap-2'>
             <div className='rounded-full w-14 h-14 bg-card flex justify-center items-center border border-primary/20 mr-2 '>
               <User size={26} className='text-primary'/>
             </div>
-            <div className='flex flex-col gap-1'>
-              <p >Johnathan Holmes</p>
-              <p className='text-xs text-slate-400'>John@devSpace.co.uk</p>
-            </div>
+            <SideProfile />
           </div>
          <Menu />
-      </div>
+      </Link>
     </div>
   )
 }

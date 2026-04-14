@@ -14,6 +14,14 @@ export type statsType = {
     color:string;
 }
 
+export type achievementType = {
+    _id?: string;
+    title: string;
+    description: string;
+    category: string;
+}
+
+
 export type projectType = {
     _id?: string;
     name: string;  
@@ -33,8 +41,6 @@ export type projectType = {
     endDate:string;
     status:string;
 }
-
-
 
 
 export type userRegister = {
@@ -73,7 +79,6 @@ export type profileType={
 export type skillType={
     _id?:string,
     name:string,
-    catergory:string,
     category: string
     proficiency: string
     yearsOfExperience: number

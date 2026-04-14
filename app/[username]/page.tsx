@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 
+
 interface Profile {
   fullname: string
   username: string
@@ -29,7 +30,7 @@ interface Project {
 
 async function getProfile(username: string) {
   const res = await fetch(
-    `${process.env.API_URL}/u/${username}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/u/${username}`,
     { cache: "no-store" }
   )
   if (!res.ok) return null
@@ -62,7 +63,7 @@ export default async function ProfilePage({
 
         {/* Header */}
         <div className="flex items-start gap-6 mb-10">
-          <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-white text-2xl font-medium flex-shrink-0">
+          <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-white text-2xl font-medium shrink-0">
             {initials}
           </div>
           <div className="flex-1">

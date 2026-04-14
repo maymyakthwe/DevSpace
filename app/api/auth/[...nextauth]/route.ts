@@ -49,9 +49,9 @@ const handler = NextAuth({
     async signIn({ user, account }) {
       if (account?.provider === "credentials") return true
       try {
-        console.log("API URL:", process.env.API_URL)
+        console.log("API URL:", process.env.NEXT_PUBLIC_API_URL)
         const response = await fetch(
-          process.env.API_URL + "/auth/oauth",
+          process.env.NEXT_PUBLIC_API_URL + "/auth/oauth",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

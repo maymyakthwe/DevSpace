@@ -27,14 +27,8 @@ export const createProject = async (data: projectType,token:string|null) => {
         throw new Error("No authentication token available")
     }
   console.log("Fetching projects with token:", token) // Debugging log
-  const now = new Date();
 
-  const formattedDate = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
-
-  data = {
-    ...data,
-    lastUpdated: formattedDate
-  };
+  
 
   const res =  await fetch(process.env.NEXT_PUBLIC_API_URL + "/projects", {
     method: "POST",
